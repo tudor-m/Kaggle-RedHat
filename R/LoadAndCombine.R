@@ -26,6 +26,7 @@ for (i in 1:length(inDataFiles))
   inDataTables[[i]] <- fread(inDataFiles[[i]], header=TRUE)
 }
 
+
 allData = inDataTables[[1]]
 for (i in 2:length(inDataTables))
 {
