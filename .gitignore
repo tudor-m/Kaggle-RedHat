@@ -1,6 +1,6 @@
-data/*.zip
 data/*.csv
 .Rproj.user
-public/*/*.zip
 public/*/*.data
 public/*/model_sub*.csv
+.DS_Store
+*.zip
