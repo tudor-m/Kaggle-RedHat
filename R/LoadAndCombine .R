@@ -23,7 +23,7 @@ if (kod == 3)
 if (kod == 4)
   inCoef = c(0.0,0.0,0.4,.6)
 if (kod == 5)
-  inCoef = c(0.0,0.0,0.0,.25,0.75)
+  inCoef = c(0.0,0.0,0.0,.2,0.8)
 
 for (i in 1:length(inDataFiles))
 {
@@ -43,7 +43,7 @@ set.seed(100)
 #noise = rnorm(nrow(allData),mean=1,sd=0.0001) # noise 0.990954
 #noise = rnorm(nrow(allData),mean=1,sd=0.001)# noise2 0.990954 best so far
 #noise = rnorm(nrow(allData),mean=1,sd=0.01)# noise3 0.990952
-noise = rnorm(nrow(allData),mean=1,sd=0.001)# noise4
+noise = rnorm(nrow(allData),mean=1,sd=0.0001)# noise5
 
 combinedData = 0
 for (i in 1:length(inCoef))
@@ -55,7 +55,7 @@ submitData = as.data.table(cbind(allData$activity_id,combinedData))
 setnames(submitData,c("activity_id","outcome"))
 options(scipen = 999)
 
-subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise4.4.csv"),sep = "",collapse = "")
+subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise5.4.csv"),sep = "",collapse = "")
 write.csv(submitData[,.(activity_id,outcome)],subFileName, row.names = FALSE)
 
 options(scipen = 0)
