@@ -4,15 +4,17 @@ library(xgboost)
 library(dplyr)
 library(Matrix)
 
+CV_RUN = 1
+
 cat(Sys.time())
 cat("Reading data\n")
 
-train=fread('../input/act_train.csv', verbose = FALSE) %>% as.data.frame() #added verbose for silent
-test=fread('../input/act_test.csv', verbose = FALSE) %>% as.data.frame() #added verbose for silent
+train=fread('../data/act_train.csv', verbose = FALSE) %>% as.data.frame() #added verbose for silent
+test=fread('../data/act_test.csv', verbose = FALSE) %>% as.data.frame() #added verbose for silent
 
 
 #people data frame
-people=fread('../input/people.csv') %>% as.data.frame()
+people=fread('../data/people.csv') %>% as.data.frame()
 
 
 cat(Sys.time())
@@ -55,11 +57,14 @@ D$i=1:dim(D)[1]
 
 
 ###uncomment this for CV run
-#set.seed(120)
-#unique_p <- unique(d1$people_id)
-#valid_p  <- unique_p[sample(1:length(unique_p), 40000)]
-#valid <- which(d1$people_id %in% valid_p)
-#model <- (1:length(d1$people_id))[-valid]
+if ( CV_RUN == 1)
+{
+set.seed(120)
+unique_p <- unique(d1$people_id)
+valid_p  <- unique_p[sample(1:length(unique_p), 40000)]
+valid <- which(d1$people_id %in% valid_p)
+model <- (1:length(d1$people_id))[-valid]
+}
 
 test_activity_id=test$activity_id
 rm(train,test,d1,d2);gc(verbose=FALSE)
@@ -201,22 +206,24 @@ param <- list(objective = "binary:logistic",
               min_child_weight = 0,
               max_depth = 11)
 
+
 ###uncomment this for CV run
-#
-#dmodel  <- xgb.DMatrix(train.sparse[model, ], label = Y[model])
-#dvalid  <- xgb.DMatrix(train.sparse[valid, ], label = Y[valid])
-#
-#set.seed(120)
-#m1 <- xgb.train(data = dmodel
-#                , param
-#                , nrounds = 500
-#                , watchlist = list(valid = dvalid, model = dmodel)
-#                , early.stop.round = 20
-#                , nthread=11
-#                , print_every_n = 10)
+if ( CV_RUN == 1)
+{
 
+dmodel  <- xgb.DMatrix(train.sparse[model, ], label = Y[model])
+dvalid  <- xgb.DMatrix(train.sparse[valid, ], label = Y[valid])
+
+set.seed(120)
+m1 <- xgb.train(data = dmodel
+                , param
+                , nrounds = 500
+                , watchlist = list(valid = dvalid, model = dmodel)
+                , early.stop.round = 20
+                , nthread=11
+                , print_every_n = 10)
 #[300]	valid-auc:0.979167	model-auc:0.990326
-
+}
 
 
 cat(Sys.time())
@@ -252,7 +259,7 @@ cat("Doing Loiso's magic leak\n")
 
 cat("Working on people\n")
 # load and transform people data ------------------------------------------
-ppl <- fread("../input/people.csv")
+ppl <- fread("../data/people.csv")
 
 ### Recode logic to numeric
 p_logi <- names(ppl)[which(sapply(ppl, is.logical))]
@@ -269,8 +276,8 @@ ppl[,date := as.Date(as.character(date), format = "%Y-%m-%d")]
 
 cat("Working on data\n")
 # read and combine
-activs <- fread("../input/act_train.csv")
-TestActivs <- fread("../input/act_test.csv")
+activs <- fread("../data/act_train.csv")
+TestActivs <- fread("../data/act_test.csv")
 TestActivs$outcome <- NA
 activs <- rbind(activs,TestActivs)
 rm(TestActivs)

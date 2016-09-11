@@ -4,3 +4,7 @@ public/*/*.data
 public/*/model_sub*.csv
 .DS_Store
 *.zip
+R/dtest.data
+R/dtrain.data
+R/model_sub.csv
+R/Submission.csv

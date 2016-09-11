@@ -7,6 +7,8 @@ inDataFiles[[2]] = "../public/0.990949/mod3108Kaggle_01.csv"
 inDataFiles[[3]] = "../public/0.990970/mod3108Kaggle_01.csv"
 inDataFiles[[4]] = "../public/0.990971/mod3108Kaggle_01.csv"
 inDataFiles[[5]] = "../public/0.991647/mod3108Kaggle_01.csv"
+inDataFiles[[6]] = "mod3108Kaggle_01.csv"
+
 
 kod = 1 #0.990953
 kod = 2 #0.990953
