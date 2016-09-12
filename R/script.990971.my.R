@@ -4,7 +4,7 @@ library(xgboost)
 library(dplyr)
 library(Matrix)
 
-CV_RUN = 0
+CV_RUN = 1
 
 cat(Sys.time())
 cat("Reading data\n")
@@ -220,6 +220,7 @@ if (CV_RUN == 1){
                   , nthread=11
                   , print_every_n = 10)
   #[300]	valid-auc:0.979167	model-auc:0.990326
+  #[188]	valid-auc:0.979196	model-auc:0.990415 - my run
 }
 
 
