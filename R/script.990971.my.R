@@ -4,7 +4,7 @@ library(xgboost)
 library(dplyr)
 library(Matrix)
 
-CV_RUN = 1
+CV_RUN = 0
 
 cat(Sys.time())
 cat("Reading data\n")
@@ -203,6 +203,8 @@ param <- list(objective = "binary:logistic",
               colsample_bytree = 0.92,
               colsample_bylevel = 0.9,
               min_child_weight = 0,
+              lambda = 0.2,
+              alpha = 0.2,
               max_depth = 11)
 
 ###uncomment this for CV run
