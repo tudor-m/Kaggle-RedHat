@@ -204,7 +204,7 @@ param <- list(objective = "binary:logistic",
               colsample_bytree = 0.92,
               colsample_bylevel = 0.9,
               min_child_weight = 0,
-              max_depth = 11)
+              max_depth = 16)
 
 
 ###uncomment this for CV run
@@ -217,12 +217,20 @@ dvalid  <- xgb.DMatrix(train.sparse[valid, ], label = Y[valid])
 set.seed(120)
 m1 <- xgb.train(data = dmodel
                 , param
-                , nrounds = 500
+                , nrounds = 1500
                 , watchlist = list(valid = dvalid, model = dmodel)
                 , early.stop.round = 20
                 , nthread=11
                 , print_every_n = 10)
 #[300]	valid-auc:0.979167	model-auc:0.990326
+#mine:
+#[499]	valid-auc:0.954043	model-auc:0.976620
+#min_child_weight = 11
+#[499]	valid-auc:0.951553	model-auc:0.970983
+# max_depth = 20
+#[1499]	valid-auc:0.966670	model-auc:0.994967
+# mas dep = 22, child weight = 5
+#[1499]	valid-auc:0.964919	model-auc:0.993468
 }
 
 
