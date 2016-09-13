@@ -203,8 +203,8 @@ param <- list(objective = "binary:logistic",
               colsample_bytree = 0.92,
               colsample_bylevel = 0.9,
               min_child_weight = 0,
-              lambda = 0.2,
-              alpha = 0.2,
+              lambda = 0.1,
+              alpha = 0.,
               max_depth = 11)
 
 ###uncomment this for CV run
@@ -223,6 +223,8 @@ if (CV_RUN == 1){
                   , print_every_n = 10)
   #[300]	valid-auc:0.979167	model-auc:0.990326
   #[188]	valid-auc:0.979196	model-auc:0.990415 - my run
+  #[314]	valid-auc:0.980864	model-auc:0.990386 - with alpha, lambda = 0.1
+  #[350]	valid-auc:0.981147	model-auc:0.990416 - alpha = 0, lambda = 0.1
 }
 
 

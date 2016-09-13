@@ -1,0 +1,48 @@
+library(data.table)
+
+inDataSubs = list()
+inDataFiles = list()
+
+inDataFiles[[1]] = "../public/0.990953/mod3108Kaggle_01-2.csv"
+inDataFiles[[2]] = "../public/0.990949/mod3108Kaggle_01.csv"
+inDataFiles[[3]] = "../public/0.990970/mod3108Kaggle_01.csv"
+inDataFiles[[4]] = "../public/0.990971/mod3108Kaggle_01.csv"
+inDataFiles[[5]] = "../public/0.991647/mod3108Kaggle_01.csv"
+inDataFiles[[6]] = "../public/0.991676/mod3108Kaggle_01.csv"
+inDataFiles[[7]] = "../public/0.990971/mod3108Kaggle_01_TM_2.csv"
+inDataFiles[[8]] = "../R/submit.LoadAndCombine.kod.6.noise5.2.csv" #0.991715
+inDataFiles[[9]] = "../R/submit.LoadAndCombine.kod.6.noise5.1.csv" #0.991712
+inDataFiles[[10]] = "../R/submit.LoadAndCombine.kod.7.noise4.2.csv" #0.991702
+inDataFiles[[11]] = "../R/submit.LoadAndCombine.kod.7.noise4.1.csv" #0.991713
+
+
+
+for (i in 1:length(inDataFiles))
+{
+  tmp <- fread(inDataFiles[[i]], header=TRUE)
+  inDataSubs[[i]] <- tmp$outcome
+  rm(tmp)
+}
+
+
+errMess <- function(a1,a2)
+{
+  a1 = as.numeric(a1)
+  a2 = as.numeric(a2)
+  return((sqrt(sum((a1-a2)^2)))/200)
+}
+
+m = errMess(inDataSubs[[8]],inDataSubs[[11]])
+print(m)
+m = errMess(inDataSubs[[11]],inDataSubs[[9]])
+print(m)
+m = errMess(inDataSubs[[9]],inDataSubs[[10]])
+print(m)
+
+m = errMess(inDataSubs[[8]],inDataSubs[[9]])
+print(m)
+m = errMess(inDataSubs[[8]],inDataSubs[[10]])
+print(m)
+
+
+
