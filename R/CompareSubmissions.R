@@ -14,15 +14,23 @@ inDataFiles[[8]] = "../R/submit.LoadAndCombine.kod.6.noise5.2.csv" #0.991715
 inDataFiles[[9]] = "../R/submit.LoadAndCombine.kod.6.noise5.1.csv" #0.991712
 inDataFiles[[10]] = "../R/submit.LoadAndCombine.kod.7.noise4.2.csv" #0.991702
 inDataFiles[[11]] = "../R/submit.LoadAndCombine.kod.7.noise4.1.csv" #0.991713
+inDataFiles[[12]] = "../R/submit.LoadAndCombine.kod.8.noise5.1.csv" #0.991708
+inDataFiles[[13]] = "../R/submit.LoadAndCombine.kod.8.noise4.1.csv" #0.991714
+inDataFiles[[14]] = "../R/submit.LoadAndCombine.kod.8.noise4.2.csv" #0.991689
+inDataFiles[[15]] = "../R/submit.LoadAndCombine.kod.8.noise4.3.csv" #0.991708
+inDataFiles[[16]] = "../R/submit.LoadAndCombine.kod.8.noise4.4.csv" #0.991711
+inDataFiles[[17]] = "../R/submit.LoadAndCombine.kod.8.noise4.5.csv" #0.991714
 
 
 
 for (i in 1:length(inDataFiles))
 {
   tmp <- fread(inDataFiles[[i]], header=TRUE)
-  inDataSubs[[i]] <- tmp$outcome
+  inDataSubs[[i]] <- as.numeric(tmp$outcome)
   rm(tmp)
 }
+
+meanSubs=0; for (i in 1:length(inDataSubs)) meanSubs = meanSubs + inDataSubs[[i]]; meanSubs = meanSubs/length(inDataSubs)
 
 
 errMess <- function(a1,a2)
