@@ -36,7 +36,7 @@ if (kod == 6)
 if (kod == 7)
   inCoef = c(0.0,0.0,0.0,.0,0.2,0.7,0.1)
 if (kod == 8)
-  inCoef = c(0.0,0.0,0.0,.15,0.15,0.6,0.05,0.05)
+  inCoef = c(0.0,0.0,0.0,.1,0.2,0.6,0.0,0.0)
 
 for (i in 1:length(inDataFiles))
 {
@@ -69,7 +69,7 @@ submitData = as.data.table(cbind(allData$activity_id,combinedData))
 setnames(submitData,c("activity_id","outcome"))
 options(scipen = 999)
 
-subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise4.3.csv"),sep = "",collapse = "")
+subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise4.4.csv"),sep = "",collapse = "")
 write.csv(submitData[,.(activity_id,outcome)],subFileName, row.names = FALSE)
 
 options(scipen = 0)
