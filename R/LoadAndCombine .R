@@ -10,7 +10,8 @@ inDataFiles[[5]] = "../public/0.991647/mod3108Kaggle_01.csv"
 inDataFiles[[6]] = "../public/0.991676/mod3108Kaggle_01.csv"
 inDataFiles[[7]] = "../public/0.990971/mod3108Kaggle_01_TM_2.csv"
 inDataFiles[[8]] = "../public/0.990971/mod3108Kaggle_01_TM_3.csv" #0.990960
-inDataFiles[[9]] = "../public/0.991678/mod3108Kaggle_01.csv" #0.990960
+inDataFiles[[9]] = "../public/0.991678/mod3108Kaggle_01.csv"
+inDataFiles[[10]] = "../public/0.991680/mod3108Kaggle_01.csv"
 
 
 kod = 1 #0.990953
@@ -22,6 +23,8 @@ kod = 6
 kod = 7
 kod = 8
 kod = 9
+kod = 10
+
 
 if (kod == 1)
   inCoef = c(0.8,0.2)
@@ -41,6 +44,8 @@ if (kod == 8)
   inCoef = c(0.0,0.0,0.0,.1,0.2,0.6,0.1,0.0)
 if (kod == 9)
   inCoef = c(0.0,0.0,0.0,.2,0.0,0.2,0.0,0.0,0.6)
+if (kod == 10)
+  inCoef = c(0.0,0.0,0.0,.2,0.0,0.2,0.0,0.0,0.0,0.6)
 
 for (i in 1:length(inDataFiles))
 {
@@ -73,7 +78,7 @@ submitData = as.data.table(cbind(allData$activity_id,combinedData))
 setnames(submitData,c("activity_id","outcome"))
 options(scipen = 999)
 
-subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise4.2.csv"),sep = "",collapse = "")
+subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise4.1.csv"),sep = "",collapse = "")
 write.csv(submitData[,.(activity_id,outcome)],subFileName, row.names = FALSE)
 
 options(scipen = 0)
