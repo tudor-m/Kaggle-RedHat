@@ -20,7 +20,12 @@ inDataFiles[[14]] = "../R/submit.LoadAndCombine.kod.8.noise4.2.csv" #0.991689
 inDataFiles[[15]] = "../R/submit.LoadAndCombine.kod.8.noise4.3.csv" #0.991708
 inDataFiles[[16]] = "../R/submit.LoadAndCombine.kod.8.noise4.4.csv" #0.991711
 inDataFiles[[17]] = "../R/submit.LoadAndCombine.kod.8.noise4.5.csv" #0.991714
-
+inDataFiles[[18]] = "../R/submit.LoadAndCombine.kod.9.noise4.1.csv" #0.991731
+inDataFiles[[19]] = "../R/submit.LoadAndCombine.kod.10.noise4.1.csv" #0.991732
+inDataFiles[[20]] = "../R/submit.LoadAndCombine.kod.11.noise4.1.csv" #0.991732
+inDataFiles[[21]] = "../public/0.991678/mod3108Kaggle_01.csv"
+inDataFiles[[22]] = "../public/0.991680/mod3108Kaggle_01.csv"
+inDataFiles[[23]] = "../public/0.991685/mod3108Kaggle_01.csv"
 
 
 for (i in 1:length(inDataFiles))
