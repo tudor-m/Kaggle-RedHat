@@ -13,6 +13,7 @@ inDataFiles[[8]] = "../public/0.990971/mod3108Kaggle_01_TM_3.csv" #0.990960
 inDataFiles[[9]] = "../public/0.991678/mod3108Kaggle_01.csv"
 inDataFiles[[10]] = "../public/0.991680/mod3108Kaggle_01.csv"
 inDataFiles[[11]] = "../public/0.991685/mod3108Kaggle_01.csv"
+inDataFiles[[12]] = "../public/0.991702/mod3108Kaggle_01.csv"
 
 
 kod = 1 #0.990953
@@ -26,6 +27,7 @@ kod = 8
 kod = 9
 kod = 10
 kod = 11
+kod = 12
 
 
 if (kod == 1)
@@ -49,7 +51,9 @@ if (kod == 9)
 if (kod == 10)
   inCoef = c(0.0,0.0,0.0,.2,0.0,0.2,0.0,0.0,0.0,0.6)
 if (kod == 11)
-  inCoef = c(0.0,0.0,0.0,.16,0.16,0.16,0.0,0.0,0.16,0.16,0.2)
+  inCoef = c(0.0,0.0,0.0,.2,0.0,0.2,0.0,0.0,0.2,0.2,0.2)
+if (kod == 12)
+  inCoef = c(0.0,0.0,0.0,.17,0.0,0.16,0.0,0.0,0.16,0.17,0.17,0.17)
 
 for (i in 1:length(inDataFiles))
 {
@@ -70,8 +74,8 @@ set.seed(100)
 #noise = rnorm(nrow(allData),mean=1,sd=0.001)# noise2 0.990954 best so far
 #noise = rnorm(nrow(allData),mean=1,sd=0.01)# noise3 0.990952
 #noise = rnorm(nrow(allData),mean=1,sd=0.0001)# noise5
-noise = rnorm(nrow(allData),mean=1,sd=0.001)# noise4
-noise = 1
+#noise = rnorm(nrow(allData),mean=1,sd=0.001)# noise4
+noise = 1                                   # noise0
 
 combinedData = 0
 for (i in 1:length(inCoef))
@@ -83,7 +87,7 @@ submitData = as.data.table(cbind(allData$activity_id,combinedData))
 setnames(submitData,c("activity_id","outcome"))
 options(scipen = 999)
 
-subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise0.5.csv"),sep = "",collapse = "")
+subFileName = paste(c("submit.LoadAndCombine.kod.",kod,".noise0.1.csv"),sep = "",collapse = "")
 write.csv(submitData[,.(activity_id,outcome)],subFileName, row.names = FALSE)
 
 options(scipen = 0)
