@@ -8,3 +8,4 @@ R/dtest.data
 R/dtrain.data
 R/model_sub.csv
 R/Submission.csv
+*.swp
